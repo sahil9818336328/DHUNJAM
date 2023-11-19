@@ -1,8 +1,20 @@
-# React + Vite
+# Dhunjam Assignment
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![Netlify Status](https://api.netlify.com/api/v1/badges/NETLIFY_SITE_ID/status.svg)](https://app.netlify.com/sites/dhunjam-assignment/deploys)
 
-Currently, two official plugins are available:
+**Dhunjam Assignment** 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+For comprehensive details and usage guidelines, please refer to the [documentation](https://www.notion.so/DHUN-JAM-ASSIGNMENT-6f5e9cdfe2194fc280ea32b704d94ddc?pvs=4).
+
+Watch the project's video explanation on [Loom](https://www.loom.com/share/39e59071d3654c34aba7363a8d476e93?sid=1fc5b491-318b-4673-8cce-74bad38b6698).
+
+## Installation
+
+To run this project locally, follow these steps:
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/sahil9818336328/DHUNJAM.git
+cd DHUNJAM
+npm install
+npm run dev
