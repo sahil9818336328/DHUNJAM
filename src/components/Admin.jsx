@@ -1,28 +1,46 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from 'react'
 import { StyledWrapper } from '../assets/wrappers/Admin.styled'
-import FormRow from './FormRow'
-import { BarChart } from '.'
+import {
+  BarChart,
+  CustomSongRequest,
+  RadioOptions,
+  RegularSongRequest,
+} from '.'
 import { barChartData, disableElements } from '../utils'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateAmount } from '../redux/features/user/userSlice'
 
 const Admin = ({ amount, charge_customers, id, location, name }) => {
+  // NO NEED FOR GLOBAL STATE
+  // CONTROLLED INPUTS
+
+  // KEEP TRACK OF CUSTOM SONG VALUE
   const [customSongValue, setCustomSongValue] = useState('')
+  // KEEP TRACK OF REGULAR SONG VALUES
   const [regularSongValue, setRegularSongValue] = useState({})
+  // KEEP TRACK OF SELECTED OPTION, TO DISABLE AND ENABLE ELEMENTS
   const [selectedOption, setSelectedOption] = useState(charge_customers)
+  // TO KEEP TRACK OF THE API PAYLOAD
   const [apiPayload, setApiPayload] = useState({ amount: {}, id })
+  // TO SHOW LOADING SPINNER
   const { isLoading } = useSelector((state) => state.user)
+  // VARIABLE THAT DISABLES ELEMENTS
   const disabled = selectedOption === false
+  // FOR DISPATCHING ACTIONS
+  const dispatch = useDispatch()
+
+  // UPDATE VALUES OF RADIO BUTTON
   const handleRadioChange = (event) => {
     setSelectedOption(JSON.parse(event.target.value))
   }
 
-  const dispatch = useDispatch()
-
+  // ONCE WE HAVE THE AMOUNT FROM API RESPONSE THEN POPULATE THE INPUT FIELDS AS SPECIFIED
   useEffect(() => {
     if (amount) {
+      // SET CUSTOM SONG VALUE
       setCustomSongValue(amount?.category_6)
+      // SET REGULAR SONG VALUES
       setRegularSongValue({
         category_7: amount?.category_7,
         category_8: amount?.category_8,
@@ -32,6 +50,7 @@ const Admin = ({ amount, charge_customers, id, location, name }) => {
     }
   }, [amount])
 
+  // TO KEEP TRACK OF WHAT DATA NEEDS TO BE SENT AS PAYLOAD
   const handleApiPayloadData = (e) => {
     const name = e.target.name
     const value = e.target.value
@@ -41,6 +60,7 @@ const Admin = ({ amount, charge_customers, id, location, name }) => {
     })
   }
 
+  // DYNAMIC KEYS
   const handleChange = (e) => {
     const name = e.target.name
     const value = e.target.value
@@ -48,6 +68,7 @@ const Admin = ({ amount, charge_customers, id, location, name }) => {
     handleApiPayloadData(e)
   }
 
+  // DISPATCH ACTION TO UPDATE AMOUNTS
   const handleAmountSubmission = () => {
     dispatch(updateAmount(apiPayload))
   }
@@ -56,116 +77,38 @@ const Admin = ({ amount, charge_customers, id, location, name }) => {
     <StyledWrapper>
       <div className='container'>
         <div className='restobar-details'>
+          {/* RESTO BAR NAME AND LOCATION  */}
           <h2 className='restobar-description'>
             {name} {location} on Dhun Jam
           </h2>
 
-          <div className='questions'>
-            <p className='single-question'>
-              Do you want to charge your customers for requesting songs?
-            </p>
+          {/* RESTO BAR RADIO OPTIONS COMPONENT */}
+          <RadioOptions
+            selectedOption={selectedOption}
+            disabled={disabled}
+            handleRadioChange={handleRadioChange}
+          />
 
-            <div className='radio-options'>
-              <div className='single-options'>
-                <input
-                  type='radio'
-                  id='yes'
-                  name='options'
-                  value={true}
-                  checked={selectedOption === true}
-                  className={` ${disabled ? 'disabled' : ''}`}
-                  onChange={handleRadioChange}
-                />
-                <label htmlFor='yes'>Yes</label>
-              </div>
-              <div className='single-options'>
-                <input
-                  type='radio'
-                  id='no'
-                  name='options'
-                  value={false}
-                  checked={selectedOption === false}
-                  className={`${disabled ? 'disabled' : ''}`}
-                  onChange={handleRadioChange}
-                />
-                <label htmlFor='no'>No</label>
-              </div>
-            </div>
-          </div>
+          {/* RESTO BAR CUSTOM SONG REQUEST COMPONENT */}
+          <CustomSongRequest
+            customSongValue={customSongValue}
+            disabled={disabled}
+            setCustomSongValue={setCustomSongValue}
+            handleApiPayloadData={handleApiPayloadData}
+          />
 
-          <div className='questions'>
-            <p className='single-question'>Custom song request amount-</p>
-            <div className='song-request-amount'>
-              <FormRow
-                type='number'
-                value={customSongValue}
-                className={`center ${
-                  disabled || customSongValue < 99 ? 'disabled' : ''
-                }`}
-                onChange={(e) => {
-                  setCustomSongValue(e.target.value)
-                  handleApiPayloadData(e)
-                }}
-                min={99}
-                disabled={disabled}
-                name='category_6'
-              />
-            </div>
-          </div>
+          {/* RESTO BAR REGULAR SONG REQUEST COMPONENT */}
+          <RegularSongRequest
+            disabled={disabled}
+            regularSongValue={regularSongValue}
+            handleChange={handleChange}
+          />
 
-          <div className='questions'>
-            <p className='single-question'>
-              Regular song request amounts, from high to low-
-            </p>
-            <div className='regular-song-request-amount'>
-              <FormRow
-                type='number'
-                className={`small-input center ${
-                  disabled || regularSongValue.category_7 < 79 ? 'disabled' : ''
-                }`}
-                value={regularSongValue?.category_7}
-                name='category_7'
-                onChange={handleChange}
-                min={79}
-              />
-              <FormRow
-                type='number'
-                className={`small-input center ${
-                  disabled || regularSongValue.category_8 < 59 ? 'disabled' : ''
-                }`}
-                value={regularSongValue?.category_8}
-                name='category_8'
-                onChange={handleChange}
-                min={59}
-              />
-              <FormRow
-                type='number'
-                className={`small-input center ${
-                  disabled || regularSongValue.category_9 < 39 ? 'disabled' : ''
-                }`}
-                value={regularSongValue?.category_9}
-                name='category_9'
-                onChange={handleChange}
-                min={39}
-              />
-              <FormRow
-                type='number'
-                className={`small-input center ${
-                  disabled || regularSongValue.category_10 < 19
-                    ? 'disabled'
-                    : ''
-                }`}
-                name='category_10'
-                onChange={handleChange}
-                value={regularSongValue?.category_10}
-                min={19}
-              />
-            </div>
-          </div>
-
+          {/* BAR CHAR GETS DISABLED IF VALUE OF CHARGE_CUSTOMERS IS FALSE */}
           {!disabled && (
             <BarChart data={barChartData(customSongValue, regularSongValue)} />
           )}
+          {/* SAVE BUTTON */}
           <button
             type='submit'
             className='btn btn-block'

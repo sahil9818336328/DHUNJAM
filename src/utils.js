@@ -1,3 +1,4 @@
+// DATA FOR BAR CHART
 export const barChartData = (customSongValue, regularSongValue) => {
   return [
     {
@@ -23,6 +24,7 @@ export const barChartData = (customSongValue, regularSongValue) => {
   ]
 }
 
+// DISABLE BUTTON BASED ON CERTAIN CONDITIONS
 export const disableElements = (
   disabled,
   customSongValue,

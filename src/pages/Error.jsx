@@ -16,7 +16,7 @@ const Error = () => {
           <p>
             We can&apos;t seem to find the page you&apos;ve been looking for.
           </p>
-          <Link to='/dashboard'>Back home</Link>
+          <Link to='/'>Back home</Link>
         </div>
       </StyledWrapper>
     )

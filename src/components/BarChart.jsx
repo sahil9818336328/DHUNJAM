@@ -19,7 +19,7 @@ const BarChartComponent = ({ data }) => {
           <XAxis dataKey='category' />
           <YAxis allowDecimals={false} />
           <Tooltip />
-          <Bar dataKey='value' fill='#7510F7' barSize={75} />
+          <Bar dataKey='value' fill='#f8d7da' barSize={75} />
         </BarChart>
       </ResponsiveContainer>
     </StyledWrapper>

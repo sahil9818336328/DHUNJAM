@@ -2,7 +2,9 @@ import styled from 'styled-components'
 
 export const StyledWrapper = styled.section`
   min-height: 100vh;
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
 
   .form {

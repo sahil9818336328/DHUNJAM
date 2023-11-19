@@ -9,6 +9,7 @@ import { store } from './redux/features/store.js'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
     <App />
+    {/* TOAST NOTIFICATION */}
     <ToastContainer />
   </Provider>
 )

@@ -4,17 +4,20 @@ import { adminDetails } from '../redux/features/user/userSlice'
 import { useEffect } from 'react'
 
 const Dashboard = () => {
-  // GET ID FROM REDUX
-  const { id: userId, isLoading } = useSelector((state) => state.user)
+  // GET ID AND LOADING FROM REDUX
+  const { id, isLoading } = useSelector((state) => state.user)
 
   const dispatch = useDispatch()
 
+  // CALL ADMIN API TO GET ADMIN DETAILS
   useEffect(() => {
-    dispatch(adminDetails(userId))
+    dispatch(adminDetails(id))
   }, [])
 
+  // ONCE DATA IS UPDATED IN REDUX PASS IT THROUGH THE ADMIN COMPONENT
   const { data } = useSelector((state) => state.user)
 
+  // IF API IS PENDING SHOW LOADING ELSE SHOW THE ADMIN VIEW
   return isLoading ? (
     <Loading />
   ) : (

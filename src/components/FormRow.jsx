@@ -15,6 +15,7 @@ const FormRow = ({
   // RE-USABLE COMPONENT
   return (
     <div className={`form-row  ${icon ? 'icon-container' : ''}`}>
+      {/* FEW PROPS TO MAKE IT DYNAMIC */}
       <input
         type={showPassword ? 'text' : type}
         id={name}
@@ -27,6 +28,7 @@ const FormRow = ({
         value={value}
         min={min}
       />
+      {/* IF ICON RENDER ICON ON THE RIGHT */}
       {icon && (
         <span className='eye-icon' onClick={onClick}>
           {icon}

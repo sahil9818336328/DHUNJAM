@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 
+// INITIAL STATE
 const initialState = {
   id: null,
   token: '',
@@ -8,9 +9,11 @@ const initialState = {
   data: null,
 }
 
+// FOR DATA PERSISTANCE
 const storedIdFromLocalStorage = localStorage.getItem('id')
 const retrievedId = parseInt(storedIdFromLocalStorage)
 
+// UPDATE AMOUNT
 export const updateAmount = createAsyncThunk(`user/updateAmount`, (data) => {
   return axios
     .put(`https://stg.dhunjam.in/account/admin/${data.id}`, data)
@@ -18,6 +21,7 @@ export const updateAmount = createAsyncThunk(`user/updateAmount`, (data) => {
     .catch((error) => console.log(error))
 })
 
+// GET ADMINS DETAILS
 export const adminDetails = createAsyncThunk(`user/adminDetails`, (id) => {
   return axios
     .get(`https://stg.dhunjam.in/account/admin/${retrievedId || id}`)
@@ -29,6 +33,7 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
+    // SET USER DETAILS IN REDUX FROM API RESPONSE FOR FURTHER OPERATIONS
     setUserDetails: (state, { payload }) => {
       const { id, token } = payload
       state.id = id
@@ -36,6 +41,7 @@ const userSlice = createSlice({
     },
   },
 
+  // TWO API'S FOR GETTING ADMIN DETAILS AND UPDATING AMOUNTS
   extraReducers: (builder) => {
     builder
       .addCase(updateAmount.pending, (state) => {
@@ -45,6 +51,7 @@ const userSlice = createSlice({
         state.isLoading = false
         state.data = {
           ...state.data,
+          // GET ALL PREVIOUS AMOUNT VALUES, AND REPLACE THEM WITH THE RESPONSE COMING FROM AN API
           amount: { ...state.data.amount, ...action.payload.data.amount },
         }
       })
