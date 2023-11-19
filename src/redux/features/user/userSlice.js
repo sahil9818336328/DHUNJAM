@@ -39,6 +39,10 @@ const userSlice = createSlice({
       state.id = id
       state.token = token
     },
+    logoutUser: () => {
+      localStorage.removeItem('id')
+      return initialState
+    },
   },
 
   // TWO API'S FOR GETTING ADMIN DETAILS AND UPDATING AMOUNTS
@@ -71,6 +75,6 @@ const userSlice = createSlice({
   },
 })
 
-export const { setUserDetails } = userSlice.actions
+export const { setUserDetails, logoutUser } = userSlice.actions
 
 export default userSlice.reducer
