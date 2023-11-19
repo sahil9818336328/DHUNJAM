@@ -1,8 +1,5 @@
 # Dhunjam Assignment
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/NETLIFY_SITE_ID/status.svg)](https://app.netlify.com/sites/dhunjam-assignment/deploys)
-
-**Dhunjam Assignment** 
 
 For comprehensive details and usage guidelines, please refer to the [documentation](https://www.notion.so/DHUN-JAM-ASSIGNMENT-6f5e9cdfe2194fc280ea32b704d94ddc?pvs=4).
 
@@ -15,6 +12,7 @@ To run this project locally, follow these steps:
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/sahil9818336328/DHUNJAM.git
-cd DHUNJAM
-npm install
-npm run dev
+
+   ``` cd DHUNJAM
+``` npm install
+``` npm run dev
