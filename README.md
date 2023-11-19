@@ -16,10 +16,13 @@ To run this project locally, follow these steps:
    git clone https://github.com/sahil9818336328/DHUNJAM.git
 
 2. **Navigate to project directory**
-   ``` cd DHUNJAM
+   ```bash
+   cd DHUNJAM
    
 3. **Install dependencies**
-   ``` npm install
+   ```bash
+   npm install
 
 4. **Start the server**      
-   ``` npm run dev
+   ```bash
+   npm run dev
