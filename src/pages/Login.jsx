@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import {
   Form,
+  redirect,
   useActionData,
   useNavigate,
   useNavigation,
@@ -30,8 +31,8 @@ export const action = async ({ request }) => {
     toast.success('login successful.')
     return response
   } catch (error) {
-    toast.error(error?.response?.data?.msg)
-    return error
+    toast.error('authentication invalid')
+    return redirect('/')
   }
 }
 

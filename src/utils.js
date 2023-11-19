@@ -35,13 +35,13 @@ export const disableElements = (
     return true
   } else if (customSongValue < 99) {
     return true
-  } else if (regularSongValue.categoryOne < 79) {
+  } else if (regularSongValue.category_7 < 79) {
     return true
-  } else if (regularSongValue.categoryTwo < 59) {
+  } else if (regularSongValue.category_8 < 59) {
     return true
-  } else if (regularSongValue.categoryThree < 39) {
+  } else if (regularSongValue.category_9 < 39) {
     return true
-  } else if (regularSongValue.categoryFour < 19) {
+  } else if (regularSongValue.category_10 < 19) {
     return true
   } else {
     return false

@@ -10,6 +10,7 @@ import {
 import { barChartData, disableElements } from '../utils'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateAmount } from '../redux/features/user/userSlice'
+import { toast } from 'react-toastify'
 
 const Admin = ({ amount, charge_customers, id, location, name }) => {
   // NO NEED FOR GLOBAL STATE
@@ -70,6 +71,10 @@ const Admin = ({ amount, charge_customers, id, location, name }) => {
 
   // DISPATCH ACTION TO UPDATE AMOUNTS
   const handleAmountSubmission = () => {
+    if (Object.keys(apiPayload.amount).length === 0) {
+      toast.error('Please update the values')
+      return
+    }
     dispatch(updateAmount(apiPayload))
   }
 
