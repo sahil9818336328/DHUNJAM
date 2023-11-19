@@ -5,6 +5,8 @@ For comprehensive details and usage guidelines, please refer to the [documentati
 
 Watch the project's video explanation on [Loom](https://www.loom.com/share/39e59071d3654c34aba7363a8d476e93?sid=1fc5b491-318b-4673-8cce-74bad38b6698).
 
+Live at - [Dhunjam-assignment](https://dhunham-assignment.netlify.app/)
+
 ## Installation
 
 To run this project locally, follow these steps:
@@ -13,6 +15,11 @@ To run this project locally, follow these steps:
    ```bash
    git clone https://github.com/sahil9818336328/DHUNJAM.git
 
+2. **Navigate to project directory**
    ``` cd DHUNJAM
-``` npm install
-``` npm run dev
+   
+3. **Install dependencies**
+   ``` npm install
+
+4. **Start the server**      
+   ``` npm run dev
